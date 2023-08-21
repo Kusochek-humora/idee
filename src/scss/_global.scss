@@ -1,0 +1,135 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    font-size: inherit;
+    font-weight: 400;
+}
+form {
+    margin: 0;
+}
+fieldset {
+    padding: 0;
+    border: 0;
+    margin: 0;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+address {
+    font-style: inherit;
+}
+p {
+    margin: 0;
+}
+
+ul,
+ol,
+li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+button {
+    display: block;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+input {
+    border: inherit;
+    padding: 0;
+    margin: 0;
+}
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.content {
+    flex: 1 0 auto;
+}
+
+.footer {
+    flex: 0 0 auto;
+}
+
+.container {
+    max-width: 1240px;
+    width: 100%;
+    padding: 0 20px 0;
+    margin: 0 auto;
+}
+.visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+.reset-button {
+    margin: 0;
+    border: 0;
+    border: 1px solid black;
+    padding: 0;
+    font-family: inherit;
+    text-align: left;
+    // font-size: 1em;
+    color: inherit;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
+    &:disabled {
+        cursor: default;
+    }
+}
+
+// .container-fluid{
+//     max-width: 100%;
+// 	margin: 0 auto;
+// }
+h1 {
+    font-family: "Raleway", sans-serif;
+}
+.title_simple {
+    font-size: 24px;
+    font-weight: 300;
+}
+.button {
+    border-radius: 10px;
+    background: $brown;
+    box-shadow: 1px 3px 5px 0px rgba(0, 0, 0, 0.5);
+    color: $white;
+    // padding: 19px 26px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
