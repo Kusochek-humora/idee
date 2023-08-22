@@ -542,7 +542,7 @@
     }
     .about {
         &__accordeon-button {
-            &:focus-visible {
+            &:focus {
                 &::before {
                     opacity: 1;
                 }
