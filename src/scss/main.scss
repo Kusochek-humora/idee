@@ -417,6 +417,7 @@
     .show {
         &__title {
             left: 0;
+            display: none;
             font-size: calc(75px + (212 - 100) * ((100vw - 320px) / (1200 - 320)));
         }
     }
