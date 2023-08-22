@@ -308,7 +308,7 @@
         font-weight: 900;
         line-height: normal;
 
-        cursor:auto;
+        cursor: auto;
     }
 
     &__accordeon-content {
@@ -460,11 +460,14 @@
                     opacity: 1;
                 }
             }
-            &.active {
-                &::after {
-                    transform: translateY(-50%) rotate(45deg);
+            @media (any-hover: hover) {
+                &.active {
+                    &::after {
+                        transform: translateY(-50%) rotate(45deg);
+                    }
                 }
             }
+
             &::after {
                 content: "+";
                 position: absolute;
