@@ -326,13 +326,17 @@
     height: 864px;
     max-width: 100vw;
     width: 100%;
-    background-image: url(../images/show-bg.jpg);
-    background-repeat: no-repeat;
+
+    background:
+        url(../images/show-bg.jpg),
+        lightgray 0px -57.155px / 100% 114.272% no-repeat;
+    // background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     position: relative;
     padding-top: 40px;
     z-index: 1;
+
     &__container {
         z-index: 2;
         position: relative;
@@ -341,6 +345,19 @@
         align-items: center;
         justify-content: center;
         height: 100%;
+        position: relative;
+        // &::after {
+        //     content: "";
+        //     position: absolute;
+        //     z-index: 0;
+        //     background-image: url(../images/showroom.png);
+        //     height: 212px;
+        //     max-width: 1021px;
+        //     width: 100%;
+        //     background-repeat: no-repeat;
+        //     background-position: center;
+        //     background-size: cover;
+        // }
     }
     &__shadow-bottom,
     &__shadow-top {
@@ -369,6 +386,18 @@
     }
 
     &__title {
+        color: #141414;
+        font-size: 212px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        opacity: 0.5;
+        mix-blend-mode: exclusion;
+        // display: none;
+        position: absolute;
+        user-select: none;
+        top: 162px;
+        left: 10%;
     }
 
     &__content {
@@ -384,7 +413,14 @@
         }
     }
 }
-
+@media screen and (max-width: 1200px) {
+    .show {
+        &__title {
+            left: 0;
+            font-size: calc(75px + (212 - 100) * ((100vw - 320px) / (1200 - 320)));
+        }
+    }
+}
 @media screen and (max-width: 1024px) {
     .header {
         &__logo {
@@ -397,8 +433,8 @@
             margin-left: 25px;
         }
     }
-    .show{
-        &__content{
+    .show {
+        &__content {
             font-size: 60px;
         }
     }
@@ -616,9 +652,9 @@
             }
         }
     }
-    .show{
+    .show {
         height: 100vh;
-        &__content{
+        &__content {
             font-size: 32px;
         }
     }
