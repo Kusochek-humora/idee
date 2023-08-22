@@ -1,4 +1,38 @@
 "use strict";
+
+// const swiper = new Swiper('.swiper', {
+//     // speed: 400,
+//     // spaceBetween: 100, slidesPerView: 1,
+//     // spaceBetween: 10,
+//     // Responsive breakpoints
+//     breakpoints: {
+//         // when window width is >= 320px
+//         320: {
+//             slidesPerView: 1,
+//             // spaceBetween: 20
+//             // init: function () {},
+//         },
+//         // 768: {
+//         //     on: {
+//         //         destroy: true,
+//         //     }
+//         // }
+//     },
+
+//     pagination: {
+//         el: '.swiper-pagination',
+//         clickable: true
+//     },
+//     autoplay: {
+//         delay: 4000,
+//     },
+// });
+
+
+
+
+//   document.addEventListener('DOMContentLoaded', function () {})
+
 const header = document.querySelector('.header'),
     headerLogo = document.querySelector('.header__logo-img'),
     menuBtn = document.querySelector('.header__btn-burger'),
@@ -80,7 +114,6 @@ const mediaQuery = window.matchMedia('(max-width: 768px)'),
     contentAccor = document.querySelectorAll('.about__accordeon-content'),
     containerAccor = document.querySelector('.about__container');
 
-
 function accordeonHandler(btn, media) {
     console.log('btn')
     buttonAccor.forEach((item, index) => {
@@ -96,15 +129,29 @@ function accordeonHandler(btn, media) {
     })
 }
 let f = accordeonHandler.bind();
+// let swiper = new Swiper('.swiper'); 
+let swiper;
+const settings = {
+    breakpoints: {
+        320: {
+            slidesPerView: 1,
+        },
+    },
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: true
+    },
+    autoplay: {
+        delay: 4000,
+    },
+}
 const handleTabletChange = function (e) {
-
-    // Проверить, что media query будет true
     if (e.matches) {
-        // Вывести сообщение в консоль
         containerAccor.addEventListener('click', f, false);
-        console.log('qwe')
+        swiper = new Swiper('.swiper', settings);
 
     } else {
+        swiper.destroy(true, true);
         removeActive();
         containerAccor.removeEventListener('click', f), false;
         for (let i = 0; i < contentAccor.length; i++) {
@@ -112,7 +159,6 @@ const handleTabletChange = function (e) {
 
             buttonAccor[i].classList.remove('active');
         }
-        console.log('123123')
     }
 
 }

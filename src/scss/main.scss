@@ -413,6 +413,62 @@
         }
     }
 }
+.partners {
+    padding-top: 33px;
+    padding-bottom: 62px;
+    position: relative;
+    &__container {
+    }
+    &__pagination {
+        display: none;
+    }
+    &__title {
+        color: #fff;
+        text-align: center;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 300;
+        line-height: 26px;
+
+        margin-bottom: 79px;
+    }
+
+    &__list {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__list-item {
+        // max-width: 280px;
+        // width: 100%;
+        // max-height: 200px;
+        // height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &:nth-child(2) {
+            margin: 0 100px;
+        }
+    }
+
+    &__list-link {
+    }
+
+    &__list-img {
+        object-fit: contain;
+        object-position: center;
+        max-width: 280px;
+        // width: 100%;
+        min-height: 200px;
+
+        height: auto;
+    }
+    .swiper-slide {
+        width: auto;
+    }
+}
+
 @media screen and (max-width: 1200px) {
     .show {
         &__title {
@@ -590,6 +646,42 @@
             transition: max-height 0.4s ease-out;
         }
     }
+    .partners {
+        &__list {
+            justify-content: unset;
+            align-items: unset;
+        }
+        &__list-item {
+            &:nth-child(2) {
+                margin: 0;
+            }
+        }
+        &__pagination {
+            margin-top: 30px;
+            position: static;
+            width: 100%;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            span {
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                &.swiper-pagination-bullet {
+                    background-color: rgba($white, $alpha: 0.6);
+                }
+                border: 1px solid $black;
+
+                &.swiper-pagination-bullet-active {
+                    background-color: $brown;
+                }
+            }
+        }
+        .swiper-slide {
+            width: 100%;
+        }
+    }
 }
 
 @media screen and (max-width: 500px) {
@@ -657,6 +749,11 @@
         height: 100vh;
         &__content {
             font-size: 32px;
+        }
+    }
+    .partners {
+        &__title {
+            margin-bottom: 30px;
         }
     }
 }
