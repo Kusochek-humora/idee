@@ -162,6 +162,79 @@ function scrollModify() {
     }
 }
 
+// const onEntry = function (entry) {
+//     // const {
+//     //     target
+//     // } = entry;
+//     console.log(entry.target)
+//     entry.forEach((change, index) => {
+//         if (change.isIntersecting) {
+//             // 
+//             // console.log(target)
+//         }
+//     });
+// }
+
+// const scrollImations = (entries, observer) => {
+
+//     entries.forEach((entry, index) => {
+
+
+//     });
+// }
+
+// const options = {
+//     // threshold: 1.0,
+//     rootMargin: '0px 0px -700px 0px',
+//     threshold: 0,
+// };
+// const observer = new IntersectionObserver(scrollImations, options);
+
+// const boxes = document.querySelectorAll('.anchor--modify');
+// boxes.forEach((box) => {
+//     observer.observe(box);
+// });
+
+// const blocks = document.querySelectorAll('.anchor--modify');
+
+// Обработчик события прокрутки
+
+
+// const observer = new IntersectionObserver(entries => {
+//     entries.forEach(entry => {
+//         const id = entry.target.getAttribute('id');
+//         const link = document.querySelector(`[href="#${id}"]`);
+
+//         if (entry.isIntersecting) {
+//             // Удалите активный класс у всех ссылок
+//             document.querySelectorAll('.anchor--obs').forEach(navLink => {
+//                 navLink.classList.remove('active');
+//             });
+
+//             // Добавьте активный класс только к текущей ссылке
+//             link.classList.add('active');
+//         } else {
+//             link.classList.remove('active');
+//         }
+//     });
+// });
+
+// document.querySelectorAll('.anchor--modify').forEach(block => {
+//     observer.observe(block);
+// }, {
+//     rootMargin: '300px 0px',
+//     threshold: 1 // Здесь вы можете указать свои значения отступов
+// });
+
+document.querySelectorAll('.anchor').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth',
+            block: "start"
+        });
+    });
+});
 
 productContainer.addEventListener('click', tabHandlerBind, false);
 menuBtn.addEventListener('click', burgerModify);
