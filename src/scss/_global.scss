@@ -46,7 +46,11 @@ address {
 p {
     margin: 0;
 }
-
+figure,
+figcaption {
+    margin: 0;
+    padding: 0;
+}
 ul,
 ol,
 li {
@@ -119,6 +123,11 @@ input {
 // }
 h1 {
     font-family: "Raleway", sans-serif;
+}
+.sub-title {
+    @media screen and (max-width: 768px) {
+        font-size: 20px !important;
+    }
 }
 .title_simple {
     font-size: 24px;

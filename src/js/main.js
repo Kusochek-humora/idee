@@ -1,44 +1,103 @@
 "use strict";
 
-// const swiper = new Swiper('.swiper', {
-//     // speed: 400,
-//     // spaceBetween: 100, slidesPerView: 1,
-//     // spaceBetween: 10,
-//     // Responsive breakpoints
-//     breakpoints: {
-//         // when window width is >= 320px
-//         320: {
-//             slidesPerView: 1,
-//             // spaceBetween: 20
-//             // init: function () {},
-//         },
-//         // 768: {
-//         //     on: {
-//         //         destroy: true,
-//         //     }
-//         // }
-//     },
 
-//     pagination: {
-//         el: '.swiper-pagination',
-//         clickable: true
-//     },
-//     autoplay: {
-//         delay: 4000,
-//     },
-// });
-
-
-
-
-//   document.addEventListener('DOMContentLoaded', function () {})
 
 const header = document.querySelector('.header'),
     headerLogo = document.querySelector('.header__logo-img'),
     menuBtn = document.querySelector('.header__btn-burger'),
-    menuNav = document.querySelector('.header__nav');
+    menuNav = document.querySelector('.header__nav'),
+    mediaQuery = window.matchMedia('(max-width: 768px)'),
+    buttonAccor = document.querySelectorAll('.about__accordeon-button'),
+    contentAccor = document.querySelectorAll('.about__accordeon-content'),
+    containerAccor = document.querySelector('.about__container'),
+    productContainer = document.querySelector('.product__container');
+
 let activeScroll = 'active',
-    activeBurger = 'active-burger';
+    activeBurger = 'active-burger',
+    f = accordeonHandler.bind(),
+    tabHandlerBind = tabHandler.bind(),
+    // let swiper = new Swiper('.swiper'); 
+    swiper;
+
+function tabHandler(e) {
+
+    const productBtn = productContainer.querySelectorAll('.product__tab-button');
+    productBtn.forEach((item, index) => {
+
+        if (e.target === item) {
+            item.classList.toggle('active');
+            if (document.querySelectorAll('.product__tab-content')[index].style.maxHeight) {
+                document.querySelectorAll('.product__tab-content')[index].style.maxHeight = null;
+            } else {
+                document.querySelectorAll('.product__tab-content')[index].style.maxHeight = document.querySelectorAll('.product__tab-content')[index].scrollHeight + "px";
+            }
+        }
+    })
+}
+
+function accordeonHandler(btn, media) {
+    buttonAccor.forEach((item, index) => {
+        if (btn.target === item) {
+            item.classList.toggle('active');
+            if (contentAccor[index].style.maxHeight) {
+                contentAccor[index].style.maxHeight = null;
+            } else {
+                contentAccor[index].style.maxHeight = contentAccor[index].scrollHeight + "px";
+            }
+        }
+    })
+}
+
+
+const handleTabletChange = function (e) {
+    const productBtn = productContainer.querySelectorAll('.product__tab-button');
+
+    if (e.matches) {
+        // productBtn[1].click();
+        containerAccor.addEventListener('click', f, false);
+        const settings = {
+            loop: true,
+            breakpoints: {
+                320: {
+                    slidesPerView: 1,
+                },
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true
+            },
+            autoplay: {
+                delay: 4000,
+            },
+        }
+        swiper = new Swiper('.swiper', settings);
+
+
+        productBtn.forEach((item, index) => {
+            item.removeAttribute('disabled')
+        })
+        return e;
+
+    } else {
+        if (swiper) swiper.destroy(true, true);
+        removeActive();
+        containerAccor.removeEventListener('click', f), false;
+        for (let i = 0; i < contentAccor.length; i++) {
+            if (contentAccor[i].style.maxHeight) contentAccor[i].style.maxHeight = null;
+            buttonAccor[i].classList.remove('active');
+        }
+        for (let i = 0; i < productBtn.length; i++) {
+
+            if (document.querySelectorAll('.product__tab-content')[i].style.maxHeight) document.querySelectorAll('.product__tab-content')[i].style.maxHeight = null;
+            productBtn.forEach((item, index) => {
+                item.setAttribute("disabled", "disabled")
+                item.classList.remove('active');
+            })
+        }
+        return e;
+    }
+
+}
 
 function checkBurger() {
     return menuBtn.classList.contains('active');
@@ -104,67 +163,11 @@ function scrollModify() {
 }
 
 
+productContainer.addEventListener('click', tabHandlerBind, false);
 menuBtn.addEventListener('click', burgerModify);
 window.addEventListener('scroll', scrollModify);
-// window.addEventListener('resize', resizeWindow);
 
 
-const mediaQuery = window.matchMedia('(max-width: 768px)'),
-    buttonAccor = document.querySelectorAll('.about__accordeon-button'),
-    contentAccor = document.querySelectorAll('.about__accordeon-content'),
-    containerAccor = document.querySelector('.about__container');
-
-function accordeonHandler(btn, media) {
-    console.log('btn')
-    buttonAccor.forEach((item, index) => {
-
-        if (btn.target === item) {
-            item.classList.toggle('active');
-            if (contentAccor[index].style.maxHeight) {
-                contentAccor[index].style.maxHeight = null;
-            } else {
-                contentAccor[index].style.maxHeight = contentAccor[index].scrollHeight + "px";
-            }
-        }
-    })
-}
-let f = accordeonHandler.bind();
-// let swiper = new Swiper('.swiper'); 
-let swiper;
-const settings = {
-    breakpoints: {
-        320: {
-            slidesPerView: 1,
-        },
-    },
-    pagination: {
-        el: '.swiper-pagination',
-        clickable: true
-    },
-    autoplay: {
-        delay: 4000,
-    },
-}
-const handleTabletChange = function (e) {
-    if (e.matches) {
-        containerAccor.addEventListener('click', f, false);
-        swiper = new Swiper('.swiper', settings);
-
-    } else {
-        swiper.destroy(true, true);
-        removeActive();
-        containerAccor.removeEventListener('click', f), false;
-        for (let i = 0; i < contentAccor.length; i++) {
-            if (contentAccor[i].style.maxHeight) contentAccor[i].style.maxHeight = null;
-
-            buttonAccor[i].classList.remove('active');
-        }
-    }
-
-}
-
-// Слушать события
 mediaQuery.addListener(handleTabletChange);
 
-// Начальная проверка
 handleTabletChange(mediaQuery);
