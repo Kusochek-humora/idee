@@ -308,7 +308,7 @@
         font-weight: 900;
         line-height: normal;
 
-        cursor: auto;
+        cursor:auto;
     }
 
     &__accordeon-content {
@@ -455,19 +455,19 @@
                 transition: 0.3s opacity;
                 opacity: 0;
             }
-            &:hover {
-                &::before {
-                    opacity: 1;
-                }
-            }
-            @media (any-hover: hover) {
-                &.active {
-                    &::after {
-                        transform: translateY(-50%) rotate(45deg);
+         
+            @media (any-hover: hover){
+                &:hover {
+                    &::before {
+                        opacity: 1;
                     }
                 }
             }
-
+            &.active {
+                &::after {
+                    transform: translateY(-50%) rotate(45deg);
+                }
+            }
             &::after {
                 content: "+";
                 position: absolute;
