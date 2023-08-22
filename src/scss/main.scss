@@ -307,6 +307,8 @@
         font-style: normal;
         font-weight: 900;
         line-height: normal;
+
+        cursor:auto;
     }
 
     &__accordeon-content {
@@ -316,6 +318,8 @@
         font-weight: 300;
         line-height: normal;
         text-align: justify;
+
+        padding-top: 10px;
     }
 }
 
@@ -437,6 +441,7 @@
             }
         }
         &__accordeon-button {
+            cursor: pointer;
             width: 100%;
             padding: 10px 0;
             position: relative;
