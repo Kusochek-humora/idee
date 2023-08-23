@@ -161,6 +161,105 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    const form = document.getElementById('form'),
+        mailInput = document.getElementById('mail'),
+        nameInput = document.getElementById('name'),
+        textArea = document.getElementById('textarea'),
+        btnSubmit = document.getElementById('submit'),
+        modalCloseBtn = document.querySelector('.modal-close');
+
+    function validateEmail() {
+        let emailInput = document.getElementById("mail"),
+            emailValue = emailInput.value,
+            emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (emailRegex.test(emailValue)) {
+            btnSubmitHandle(true);
+            emailInput.removeAttribute('style');
+            return true;
+        } else {
+            btnSubmitHandle(false);
+            // Email is not valid
+            emailInput.style.borderColor = "red";
+            return false;
+        }
+    }
+
+    function validateName() {
+        let nameInput = document.getElementById("name");
+        let nameValue = nameInput.value;
+        let nameRegex = /^[a-zA-Zа-яА-Я\s]+$/;
+
+
+        if (nameValue.trim() === "") {
+            // Name is empty
+            btnSubmitHandle(false);
+            nameInput.style.borderColor = "red";
+            return false;
+        } else if (!nameRegex.test(nameValue)) {
+            btnSubmitHandle(false);
+            nameInput.style.borderColor = "red";
+            return false;
+        } else {
+            btnSubmitHandle(true);
+            nameInput.removeAttribute('style');
+            return true;
+        }
+    }
+
+    function btnSubmitHandle(check) {
+        if (check) {
+            btnSubmit.classList.remove('disabled');
+        } else {
+            btnSubmit.classList.add('disabled');
+        }
+
+    }
+
+    function handleSubmit(event) {
+        if (!validateEmail() || !validateName()) {
+            event.preventDefault(); // Prevent form submission
+        } else {
+            sendEmail();
+        }
+    }
+
+    function closeModal() {
+        // Скрываем overlay и модальное окно
+        document.getElementById("overlay").style.display = "none";
+        document.getElementById("myModal").style.display = "none";
+        document.querySelector('.wrapper').classList.add('remove');
+    }
+
+    function sendEmail() {
+        let email = mailInput.value,
+            name = nameInput.value,
+            text = textArea.value;
+
+        // Create an object with the data
+        let formData = new FormData();
+        formData.append("email", email);
+        formData.append("name", name);
+        formData.append("text", text);
+        // Send POST request using Axios
+        axios.post("mailer.php", formData)
+            .then(function (response) {
+                // Handle success
+                form.reset();
+                document.getElementById("overlay").style.display = "block";
+                document.getElementById("myModal").style.display = "block";
+                document.querySelector('.wrapper').classList.add('fixed');
+            })
+            .catch(function (error) {
+                // Handle error
+                console.log('НЕ РАБОТАЕТ')
+            });
+    }
+    modalCloseBtn.addEventListener('click', closeModal);
+    btnSubmit.addEventListener('click', handleSubmit);
+    nameInput.addEventListener('change', validateName)
+    mailInput.addEventListener('change', validateEmail)
+    // form.addEventListener('submit', handleSubmit);
     document.querySelectorAll('.anchor').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();

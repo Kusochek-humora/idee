@@ -11,8 +11,8 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@800&family=Roboto:wght@100;300;400;600;900&display=swap"
 		rel="stylesheet">
-	<link rel="stylesheet" href="css/vendor.min.css?=1692790870041">
-	<link rel="stylesheet" href="css/main.min.css?=1692790870041">
+	<link rel="stylesheet" href="css/vendor.min.css?=1692804214002">
+	<link rel="stylesheet" href="css/main.min.css?=1692804214002">
 </head>
 
 <body class="wrapper">
@@ -102,7 +102,7 @@
                     Экстерьерные и интерьерные решения от ведущих
                     европейских производителей в Казахстане
                 </p>
-                <a href="#contacts" class="button promo__button anchor"><span>Связаться</span></a>
+                <a href="#contacts" class="button promo__button anchor"><span>Связаться <span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="16" viewBox="0 0 24 24" fill="white"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/></svg></span></span></a>
                 <ul class="promo__socials">
                     <li class="promo__socials-item">
                         <a href="http://wa.me/+491708777730" target="_blank" class="promo__socials-link">
@@ -275,12 +275,12 @@
                             </a>
                         </li>
                         <li class="partners__list-item swiper-slide">
-                            <a href="https://logformata.com/"  target="_blank" class="partners__list-link">
+                            <a href="https://logformata.com/" target="_blank" class="partners__list-link">
                                 <img src="images/partners__logo-2.png" alt="logformata" class="partners__list-img">
                             </a>
                         </li>
                         <li class="partners__list-item swiper-slide">
-                            <a href="https://orda-invest.kz/"  target="_blank" class="partners__list-link">
+                            <a href="https://orda-invest.kz/" target="_blank" class="partners__list-link">
                                 <img src="images/partners__logo-3.png" alt="Orda invest" class="partners__list-img">
                             </a>
                         </li>
@@ -418,21 +418,24 @@
                         </div>
                     </div>
                     <div class="contacts__right">
-                        <form action="#" class="contacts__form">
+                        <form class="contacts__form" id="form">
                             <label class="contacts__label">
                                 <span>Введите имя:</span>
-                                <input required type="text" class="contacts__input" placeholder="Имя">
+                                <input required type="text" class="contacts__input" placeholder="Имя" id="name"
+                                    name="name">
                             </label>
                             <label class="contacts__label">
                                 <span>Введите Email:</span>
-                                <input required type="mail" class="contacts__input" placeholder="Email">
+                                <input required type="mail" class="contacts__input" placeholder="Email" id="mail"
+                                    >
                             </label>
                             <div class="contacts__wrapper">
                                 <span>Сообщение:</span>
-                                <textarea class="contacts__textarea" placeholder="Введите сообщение..."></textarea>
+                                <textarea class="contacts__textarea" placeholder="Введите сообщение..." id="textarea"
+                                    name="text"></textarea>
                             </div>
 
-                            <button class="contacts__button button" type="submit">ОТПРАВИТЬ</button>
+                            <button class="contacts__button button" type="submit" id="submit">ОТПРАВИТЬ</button>
                         </form>
                     </div>
                 </div>
@@ -488,9 +491,15 @@
 		2023 Idee Facade Solitions
 	</p>
 </footer>
+    <div class="overlay" id="overlay"></div>
 
-    <script src="js/vendor.min.js?=1692790870041"></script>
-<script src="js/main.min.js?=1692790870041"></script>
+    <!-- Модальное окно -->
+    <div id="myModal" class="modal">
+        <p>Сообщение отправлено!</p>
+        <button class="button modal-close">ок</button>
+    </div>
+    <script src="js/vendor.min.js?=1692804214002"></script>
+<script src="js/main.min.js?=1692804214002"></script>
 </body>
 
 </html>
