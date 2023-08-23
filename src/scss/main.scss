@@ -560,6 +560,8 @@
     }
 
     &__tab-caption {
+        position: relative;
+        z-index: 1;
         text-align: center;
         font-size: 18px;
         font-weight: 400;
